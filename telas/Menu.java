@@ -134,7 +134,7 @@ public class Menu extends JFrame{
 
         btnEntradaEstoque.addActionListener(e -> {
             tela.dispose();
-            new EntradaEstoque(validarCargo(ehAdmin));
+            new TelaEntradaEstoque(validarCargo(ehAdmin));
         });
 
         btnSaidaEstoque.addActionListener(e -> {

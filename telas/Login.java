@@ -148,6 +148,9 @@ public class Login extends JFrame{
            
             Usuario usuario = usuarioDAO.buscarLogin(email, senhaDigitada);
             if(usuario != null){
+                // Define o usuário logado na sessão
+                classes.Sessao.setUsuarioLogado(usuario);
+            
                 tela.dispose();
                 boolean ehAdmin = usuario.getCargo().equalsIgnoreCase("Administrador");
                 new Menu(ehAdmin);

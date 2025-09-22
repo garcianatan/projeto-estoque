@@ -1,9 +1,13 @@
 import javax.swing.*;
+
+import banco.EntradaEstoqueDAO;
+import classes.EntradaEstoque;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
  
-public class EntradaEstoque {
+public class TelaEntradaEstoque {
     // Declaração dos componentes como variáveis de instância para acesso nos
     // métodos
     private JTextField txtN_Doc;
@@ -14,7 +18,8 @@ public class EntradaEstoque {
     private JComboBox<String> cbtipos;
     private JPanel AlinharBotoes;
     private JButton btnNovo, btnConfirmar,btnCancelar,btnSair;
- 
+    private EntradaEstoqueDAO entradaEstoqueDAO;
+
     public void validarCargo(boolean cargo){
 		if(cargo){
 			new Menu(true);
@@ -22,9 +27,45 @@ public class EntradaEstoque {
 			new Menu(false);
 		}
 	}
+
+    public void limpar() {
+        txtN_Doc.setText("");
+        txtDate.setText("");
+        txtFornecedor.setText("");
+        txtProduto.setText("");
+        textquant.setText("");
+        cbtipos.setSelectedIndex(0);
+    }
+
+    public void abrirTela() {
+        txtN_Doc.setEnabled(false);
+        txtDate.setEnabled(false);
+        txtFornecedor.setEnabled(false);
+        txtProduto.setEnabled(false);
+        textquant.setEnabled(false);
+        cbtipos.setEnabled(false);
+
+        btnNovo.setEnabled(true);   
+        btnConfirmar.setEnabled(false);
+        btnCancelar.setEnabled(false);
+    }
+
+    public void habilitar() {
+        txtN_Doc.setEnabled(true);
+        txtDate.setEnabled(true);
+        txtFornecedor.setEnabled(true);
+        txtProduto.setEnabled(true);
+        textquant.setEnabled(true);
+        cbtipos.setEnabled(true);
+    }
+
+    public void desabilitar() {
+        abrirTela();
+        limpar();
+    }
  
-    public EntradaEstoque(boolean Cargo) {
- 
+    public TelaEntradaEstoque(boolean Cargo) {
+        entradaEstoqueDAO = new EntradaEstoqueDAO();
         JFrame tela = new JFrame("Entrada de Estoque");
         tela.setSize(700, 600);
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -108,7 +149,7 @@ public class EntradaEstoque {
     organizar.gridwidth = 1;
     organizar.gridx = 0;
     organizar.gridy = linha;
-    JLabel lblproduto = new JLabel("Produtos:");
+    JLabel lblproduto = new JLabel("Código do produto:");
     lblproduto.setForeground(Color.white);
     tela.add(lblproduto, organizar);
     txtProduto= new JTextField(20);
@@ -132,7 +173,7 @@ public class EntradaEstoque {
     organizar.gridwidth = 1;
     organizar.gridx = 0;
     organizar.gridy = linha;
-    JLabel lbltipo = new JLabel("Tipos de Entrada:");
+    JLabel lbltipo = new JLabel("Tipo de Entrada:");
     lbltipo.setForeground(Color.white);
     tela.add(lbltipo, organizar);
     String[] tipos = {
@@ -168,6 +209,69 @@ public class EntradaEstoque {
             validarCargo(Cargo);
         });
 
+        btnNovo.addActionListener(e -> {
+            habilitar();
+
+            btnNovo.setEnabled(false);
+            btnConfirmar.setEnabled(true);
+            btnCancelar.setEnabled(true);
+        });
+
+        btnCancelar.addActionListener(e -> {
+            desabilitar();
+        });
+
+        btnConfirmar.addActionListener(e -> {
+            if(txtN_Doc.getText().equals("")){
+                JOptionPane.showMessageDialog(tela, "Campo N° de documento é Obrigatório!");
+            }
+            else if (txtDate.getText().equals("")) {
+                JOptionPane.showMessageDialog(tela, "Campo Data de Entrada é Obrigatório!");
+            }
+            else if(txtFornecedor.getText().equals("")) {
+                JOptionPane.showMessageDialog(tela, "Campo Fornecedor é obrigatório!");
+            }
+            else if(txtProduto.getText().equals("")){
+                JOptionPane.showMessageDialog(tela, "Campo Código do produto é Obrigatório!");
+            } else if(textquant.getText().equals("")){
+				JOptionPane.showMessageDialog(tela, "Campo Quantidade é Obrigatório!");
+			} else if(cbtipos.getSelectedIndex() == 0){
+				JOptionPane.showMessageDialog(tela, "Campo Tipo de Entrada é Obrigatório!");
+			}
+			else{
+                try {
+                    EntradaEstoque entrada = new EntradaEstoque();
+                    entrada.setDocumento(txtN_Doc.getText());
+                    entrada.setDataEntrada(txtDate.getText());
+                    entrada.setFornecedor(txtFornecedor.getText());
+                    entrada.setCod_produto(Integer.parseInt(txtProduto.getText()));
+					entrada.setQuantidade(Integer.parseInt(textquant.getText()));
+					if(cbtipos.getSelectedIndex() == 1){
+                        entrada.setTipoEntrada("Aquisição");
+                    }else if(cbtipos.getSelectedIndex() == 2){
+                        entrada.setTipoEntrada("Devolução");
+                    } else if(cbtipos.getSelectedIndex() == 3) {
+                        entrada.setTipoEntrada("Armazenamento");
+                    }
+                    
+                    entradaEstoqueDAO.confirmarEntrada(entrada);
+                    JOptionPane.showMessageDialog(tela, "Entrada confirmada.");
+                    limpar();
+                    abrirTela();
+				} catch (Exception ex) {
+					String msg = ex.getMessage();
+				
+					if (msg != null && msg.contains("fkENTRADA_DOC_FORNECEDOR")) {
+						JOptionPane.showMessageDialog(tela, "Fornecedor inexistente no banco da dados!");
+					} else if(msg != null && msg.contains("fkENTRADA_COD_PRODUTO")) {
+                        JOptionPane.showMessageDialog(tela, "Produto inexistente no banco da dados!");
+                    } else {
+						JOptionPane.showMessageDialog(tela, "Erro ao confirmar: " + msg);
+					}
+				}
+            }
+        });
+        abrirTela();
         tela.setVisible(true);
  
     }

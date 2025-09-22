@@ -106,7 +106,7 @@ public class SaidaEstoque extends JFrame{
 		gbc.gridy = linha;
 		gbc.gridx = 1;
 		gbc.gridwidth = 1;
-        lblCodigo = new JLabel("Código");
+        lblCodigo = new JLabel("Nº de documento:");
 		estilizarLabel(lblCodigo);
         tela.add(lblCodigo, gbc);
 
@@ -138,7 +138,7 @@ public class SaidaEstoque extends JFrame{
 		gbc.gridy = linha;
 		gbc.gridwidth = 2;
 		gbc.insets = new Insets(5, 5, 5, 5);
-		lblNomeProduto = new JLabel("Produto");
+		lblNomeProduto = new JLabel("Código do produto");
 		estilizarLabel(lblNomeProduto);
 		tela.add(lblNomeProduto, gbc);
 
