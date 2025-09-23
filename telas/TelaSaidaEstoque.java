@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class SaidaEstoque extends JFrame{
+public class TelaSaidaEstoque extends JFrame{
     private JFrame tela;
     private JLabel lblTitulo, lblCodigo, lblNomeProduto, lblQuantidade, lblTipoSaida, lblDataSaida;
 	private JTextField txtCodigo, txtNomeProduto, txtQuantidade, txtTipoSaida, txtDataSaida;
@@ -70,7 +70,7 @@ public class SaidaEstoque extends JFrame{
 		}
 	}
 
-    public SaidaEstoque(boolean Cargo) {
+    public TelaSaidaEstoque(boolean Cargo) {
         tela = new JFrame("Saída de Estoque");
 		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		tela.setSize(700, 600);
