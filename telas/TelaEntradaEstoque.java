@@ -136,7 +136,7 @@ public class TelaEntradaEstoque {
     organizar.gridwidth = 1;
     organizar.gridx = 0;
     organizar.gridy = linha;
-    JLabel lblfornecedor = new JLabel("Fornecedor:");
+    JLabel lblfornecedor = new JLabel("Doc do Fornecedor:");
     lblfornecedor.setForeground(Color.white);
     tela.add(lblfornecedor, organizar);
     txtFornecedor= new JTextField(20);
@@ -187,7 +187,7 @@ public class TelaEntradaEstoque {
    
     //novo
     linha++;
-    organizar.gridx = 0;
+        organizar.gridx = 0;
         organizar.gridy = linha;
         organizar.gridwidth = 2;
         organizar.anchor = GridBagConstraints.CENTER;

@@ -1,19 +1,28 @@
 import javax.swing.*;
+
+import banco.SaidaEstoqueDAO;
+
+import classes.EntradaEstoque;
+import classes.SaidaEstoque;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 
 public class TelaSaidaEstoque extends JFrame{
     private JFrame tela;
     private JLabel lblTitulo, lblCodigo, lblNomeProduto, lblQuantidade, lblTipoSaida, lblDataSaida;
-	private JTextField txtCodigo, txtNomeProduto, txtQuantidade, txtTipoSaida, txtDataSaida;
+	private JTextField txtNumDoc, txtCodProduto, txtQuantidade, txtTipoSaida, txtDataSaida;
 	private JButton btnSair, btnNovo, btnConfirmar, btnCancelar;
 	private String[] tipoSaida = {
         "--Selecione--", "Venda", "Devolução ao fornecedor", "Outro"
     };
 	private JComboBox<String> cbTipoSaida = new JComboBox<>(tipoSaida);
-    
+    private SaidaEstoqueDAO saidaEstoqueDAO;
+
     private void estilizarLabel(JLabel label) {
         label.setForeground(Color.WHITE);
         label.setFont(new Font("Arial", Font.BOLD, 14));
@@ -21,9 +30,8 @@ public class TelaSaidaEstoque extends JFrame{
 
     public void abrirTela() {
 
-		txtCodigo.setEnabled(false);
         txtDataSaida.setEnabled(false);
-		txtNomeProduto.setEnabled(false);
+		txtCodProduto.setEnabled(false);
 		txtQuantidade.setEnabled(false);
 		cbTipoSaida.setEnabled(false);
 
@@ -33,9 +41,7 @@ public class TelaSaidaEstoque extends JFrame{
 	}
 
     private void habilitar() {
-        txtCodigo.setEnabled(true);
-        txtDataSaida.setEnabled(true);
-		txtNomeProduto.setEnabled(true);
+		txtCodProduto.setEnabled(true);
 		txtQuantidade.setEnabled(true);
 		cbTipoSaida.setEnabled(true);
     }
@@ -46,21 +52,21 @@ public class TelaSaidaEstoque extends JFrame{
 	}
 
     private void limpar() {
-        txtCodigo.setText("");
+        
         txtDataSaida.setText("");
-		txtNomeProduto.setText("");
+		txtCodProduto.setText("");
 		txtQuantidade.setText("");
 		cbTipoSaida.setSelectedIndex(0);
     }
 
-    public void validarCampos() {
-		if (txtCodigo.getText().equals("") || txtDataSaida.getText().equals("") || txtNomeProduto.getText().equals("") || txtQuantidade.getText().equals("") || cbTipoSaida.getSelectedIndex() == 0) {
-			JOptionPane.showMessageDialog(tela, "Preencha todos os campos!");
-		} else {
-			desabilitar();
-			JOptionPane.showMessageDialog(tela, "Saída confirmada.");
-		}
-	}
+    // public void validarCampos() {
+	// 	if (txtNumDoc.getText().equals("") || txtDataSaida.getText().equals("") || txtCodProduto.getText().equals("") || txtQuantidade.getText().equals("") || cbTipoSaida.getSelectedIndex() == 0) {
+	// 		JOptionPane.showMessageDialog(tela, "Preencha todos os campos!");
+	// 	} else {
+	// 		desabilitar();
+	// 		JOptionPane.showMessageDialog(tela, "Saída confirmada.");
+	// 	}
+	// }
 
 	public void validarCargo(boolean cargo){
 		if(cargo){
@@ -71,6 +77,7 @@ public class TelaSaidaEstoque extends JFrame{
 	}
 
     public TelaSaidaEstoque(boolean Cargo) {
+		saidaEstoqueDAO = new SaidaEstoqueDAO();
         tela = new JFrame("Saída de Estoque");
 		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		tela.setSize(700, 600);
@@ -102,32 +109,32 @@ public class TelaSaidaEstoque extends JFrame{
 		tela.add(btnSair);
 
 
-		linha++;
-		gbc.gridy = linha;
-		gbc.gridx = 1;
-		gbc.gridwidth = 1;
-        lblCodigo = new JLabel("Nº de documento:");
-		estilizarLabel(lblCodigo);
-        tela.add(lblCodigo, gbc);
+		// linha++;
+		// gbc.gridy = linha;
+		// gbc.gridx = 1;
+		// gbc.gridwidth = 1;
+        // lblCodigo = new JLabel("Nº de documento:");
+		// estilizarLabel(lblCodigo);
+        // tela.add(lblCodigo, gbc);
 
-		gbc.gridx = 2;
-		gbc.gridwidth = 3;
-		txtCodigo = new JTextField(10);
-		gbc.insets = new Insets(5, 50, 5, 5);
-		tela.add(txtCodigo, gbc);
+		// gbc.gridx = 2;
+		// gbc.gridwidth = 3;
+		// txtNumDoc = new JTextField(10);
+		// gbc.insets = new Insets(5, 50, 5, 5);
+		// tela.add(txtNumDoc, gbc);
 
 		linha++;
 
         gbc.gridx = 1;
 		gbc.gridy = linha;
-		gbc.gridwidth = 2;
+		gbc.gridwidth = 1;
 		gbc.insets = new Insets(5, 5, 5, 5);
 		lblDataSaida = new JLabel("Data de saída");
 		estilizarLabel(lblDataSaida);
 		tela.add(lblDataSaida, gbc);
 
 		gbc.gridx = 2;
-		gbc.gridwidth = 4;
+		gbc.gridwidth = 3;
 		gbc.insets = new Insets(5, 50, 5, 5);
 		txtDataSaida = new JTextField(20);
 		tela.add(txtDataSaida, gbc);
@@ -145,8 +152,8 @@ public class TelaSaidaEstoque extends JFrame{
 		gbc.gridx = 2;
 		gbc.gridwidth = 4;
 		gbc.insets = new Insets(5, 50, 5, 5);
-		txtNomeProduto = new JTextField(20);
-		tela.add(txtNomeProduto, gbc);
+		txtCodProduto = new JTextField(20);
+		tela.add(txtCodProduto, gbc);
 
         linha++;
 
@@ -202,7 +209,12 @@ public class TelaSaidaEstoque extends JFrame{
         btnNovo.addActionListener(e -> {
 			habilitar();
 
-            txtCodigo.requestFocus();
+			// Define a data atual no campo txtDataSaida
+			LocalDate hoje = LocalDate.now();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy"); // ou ""
+			txtDataSaida.setText(hoje.format(formatter));
+
+            txtCodProduto.requestFocus();
 
 			btnNovo.setEnabled(false);
 			btnConfirmar.setEnabled(true);
@@ -210,7 +222,51 @@ public class TelaSaidaEstoque extends JFrame{
 		});
 
         btnConfirmar.addActionListener(e -> {
-            validarCampos();
+            // validarCampos();
+
+            if (txtDataSaida.getText().equals("")) {
+                JOptionPane.showMessageDialog(tela, "Campo Data de Saída é Obrigatório!");
+            }
+            else if(txtCodProduto.getText().equals("")) {
+                JOptionPane.showMessageDialog(tela, "Campo Códgio do produto é obrigatório!");
+            }
+            else if(txtQuantidade.getText().equals("")){
+                JOptionPane.showMessageDialog(tela, "Campo Quantidade é Obrigatório!");
+            } else if(cbTipoSaida.getSelectedIndex() == 0){
+				JOptionPane.showMessageDialog(tela, "Campo Tipo de saída é Obrigatório!");
+			} else{
+                try {
+                    SaidaEstoque saida = new SaidaEstoque();
+                    // saida.setDocumento(Integer.parseInt(txtNumDoc.getText()));
+                    saida.setDataSaida(txtDataSaida.getText());
+                    saida.setCod_produto(Integer.parseInt(txtCodProduto.getText()));
+                    saida.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
+					if(cbTipoSaida.getSelectedIndex() == 1){
+                        saida.setTipoSaida("Venda");
+                    }else if(cbTipoSaida.getSelectedIndex() == 2){
+                        saida.setTipoSaida("Devolução ao fornecedor");
+                    } else if(cbTipoSaida.getSelectedIndex() == 3) {
+                        saida.setTipoSaida("Outro");
+                    }
+
+                    saidaEstoqueDAO.confirmarSaida(saida);
+                    JOptionPane.showMessageDialog(tela, "Saida confirmada.");
+                    limpar();
+                    abrirTela();
+				} catch (Exception ex) {
+					String msg = ex.getMessage();
+					JOptionPane.showMessageDialog(tela, "Erro ao confirmar a saída: " + msg);
+					
+					// if (msg != null && msg.contains("fkENTRADA_DOC_FORNECEDOR")) {
+					// 	JOptionPane.showMessageDialog(tela, "Fornecedor inexistente no banco da dados!");
+					// } else if(msg != null && msg.contains("fkENTRADA_COD_PRODUTO")) {
+                    //     JOptionPane.showMessageDialog(tela, "Produto inexistente no banco da dados!");
+                    // } else {
+					// 	JOptionPane.showMessageDialog(tela, "Erro ao confirmar a saída: " + msg);
+					// }
+
+				}
+            }
         });
 
         btnCancelar.addActionListener(e -> {
