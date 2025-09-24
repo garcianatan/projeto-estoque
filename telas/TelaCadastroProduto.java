@@ -113,6 +113,9 @@ public class TelaCadastroProduto{
 		gbc.insets = new Insets(5, 5, 10, 5); 
 		// gbc.anchor = GridBagConstraints.WEST;
 		btnSair = new JButton("Sair");
+		btnSair.setBackground(new Color(81, 112, 255));
+        btnSair.setForeground(Color.white);
+        btnSair.setFocusPainted(false);
 		gbc.gridx = 3;
 		tela.add(btnSair);
 
@@ -249,26 +252,44 @@ public class TelaCadastroProduto{
 		gbc.gridy = linha;
 		gbc.insets = new Insets(40, 5, 5, 5); 
 		btnNovo = new JButton("Novo");
+		btnNovo.setBackground(new Color(128, 128, 128));
+        btnNovo.setForeground(Color.WHITE);
+        btnNovo.setFocusPainted(false);
 		tela.add(btnNovo, gbc);
 
 		gbc.gridx = 1;
 		btnSalvar = new JButton("Salvar");
+		btnSalvar.setBackground(new Color(128, 128, 128));
+        btnSalvar.setForeground(Color.WHITE);
+        btnSalvar.setFocusPainted(false);
 		tela.add(btnSalvar, gbc);
 
 		gbc.gridx = 2;
 		btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBackground(new Color(128, 128, 128));
+        btnCancelar.setForeground(Color.WHITE);
+        btnCancelar.setFocusPainted(false);
 		tela.add(btnCancelar, gbc);
 
 		gbc.gridx = 3;
 		btnPesquisar = new JButton("Pesquisar");
+		btnPesquisar.setBackground(new Color(128, 128, 128));
+        btnPesquisar.setForeground(Color.WHITE);
+        btnPesquisar.setFocusPainted(false);
 		tela.add(btnPesquisar, gbc);
 
 		gbc.gridx = 4;
 		btnAlterar = new JButton("Alterar");
+		btnAlterar.setBackground(new Color(128, 128, 128));
+        btnAlterar.setForeground(Color.WHITE);
+        btnAlterar.setFocusPainted(false);
 		tela.add(btnAlterar, gbc);
 
 		gbc.gridx = 5;
 		btnExcluir = new JButton("Excluir");
+		btnExcluir.setBackground(new Color(128, 128, 128));
+        btnExcluir.setForeground(Color.WHITE);
+        btnExcluir.setFocusPainted(false);
 		tela.add(btnExcluir, gbc);
 
 		abrirTela();

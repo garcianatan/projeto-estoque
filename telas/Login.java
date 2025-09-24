@@ -10,7 +10,7 @@ public class Login extends JFrame{
     private JFrame tela;
     private JLabel lblTitulo, lblLogin, lblSenha, lblImagem;
     private JTextField txtLogin;
-	private String txtCargo = "Admin";
+	private String txtCargo;
     private JPasswordField Senha;
     private JButton btnEntrar, btnSair, btnEsqueceuSenha;
     private ImageIcon imagem;
@@ -76,7 +76,7 @@ public class Login extends JFrame{
 		gbc.gridy = linha;
 		gbc.gridx = 1;
 		gbc.gridwidth = 2;
-        lblLogin = new JLabel("Email");
+        lblLogin = new JLabel("E-mail:");
 		estilizarLabel(lblLogin);
         tela.add(lblLogin, gbc);
 
@@ -93,7 +93,7 @@ public class Login extends JFrame{
 		gbc.gridy = linha;
 		gbc.gridwidth = 3;
 		gbc.insets = new Insets(5, 5, 5, 5);
-		lblSenha = new JLabel("Senha");
+		lblSenha = new JLabel("Senha:");
 		estilizarLabel(lblSenha);
 		tela.add(lblSenha, gbc);
 
@@ -109,11 +109,17 @@ public class Login extends JFrame{
 		gbc.gridy = linha;
 		gbc.insets = new Insets(40, 40, 5, 5); 
 		btnEntrar = new JButton("Entrar");
+        btnEntrar.setBackground(new Color(128, 128, 128));
+        btnEntrar.setForeground(Color.WHITE);
+        btnEntrar.setFocusPainted(false);
 		tela.add(btnEntrar, gbc);
 
 		gbc.gridx = 3;
         gbc.insets = new Insets(40, 180, 5, 5);
 		btnSair = new JButton("Sair");
+        btnSair.setBackground(new Color(81, 112, 255));
+        btnSair.setForeground(Color.white);
+        btnSair.setFocusPainted(false);
 		tela.add(btnSair, gbc);
 
         linha++; 
@@ -204,9 +210,9 @@ public class Login extends JFrame{
             tela.dispose();
         });
 
-        btnEsqueceuSenha.addActionListener(e -> {
+        // btnEsqueceuSenha.addActionListener(e -> {
             
-        });
+        // });
 
 		// lblmsn2.setCursor(new Cursor(Cursor.HAND_CURSOR));
         // lblmsn2.addMouseListener(new java.awt.event.MouseAdapter() {

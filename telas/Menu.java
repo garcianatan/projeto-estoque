@@ -73,16 +73,25 @@ public class Menu extends JFrame{
 		gbc.gridy = linha;
 		// gbc.insets = new Insets(40, 5, 5, 5); 
 		btnProdutos = new JButton("Produtos");
+        btnProdutos.setBackground(new Color(128, 128, 128));
+        btnProdutos.setForeground(Color.WHITE);
+        btnProdutos.setFocusPainted(false);
 		tela.add(btnProdutos, gbc);
 
         gbc.gridx = 2;
 		gbc.gridy = linha; 
 		btnEntradaEstoque = new JButton("Entrada de Estoque");
+        btnEntradaEstoque.setBackground(new Color(128, 128, 128));
+        btnEntradaEstoque.setForeground(Color.WHITE);
+        btnEntradaEstoque.setFocusPainted(false);
 		tela.add(btnEntradaEstoque, gbc);
 
         gbc.gridx = 3;
 		gbc.gridy = linha; 
 		btnEstoqueAtual = new JButton("Estoque Atual");
+        btnEstoqueAtual.setBackground(new Color(128, 128, 128));
+        btnEstoqueAtual.setForeground(Color.WHITE);
+        btnEstoqueAtual.setFocusPainted(false);
 		tela.add(btnEstoqueAtual, gbc);
 
         linha++;
@@ -90,16 +99,25 @@ public class Menu extends JFrame{
         gbc.gridx = 1;
 		gbc.gridy = linha;
 		btnFornecedores = new JButton("Fornecedores");
+        btnFornecedores.setBackground(new Color(128, 128, 128));
+        btnFornecedores.setForeground(Color.WHITE);
+        btnFornecedores.setFocusPainted(false);
 		tela.add(btnFornecedores, gbc);
 
         gbc.gridx = 2;
 		gbc.gridy = linha; 
 		btnSaidaEstoque = new JButton("Saída de Estoque");
+        btnSaidaEstoque.setBackground(new Color(128, 128, 128));
+        btnSaidaEstoque.setForeground(Color.WHITE);
+        btnSaidaEstoque.setFocusPainted(false);
 		tela.add(btnSaidaEstoque, gbc);
 
         gbc.gridx = 3;
 		gbc.gridy = linha; 
 		btnMovimentacoes = new JButton("Movimentações");
+        btnMovimentacoes.setBackground(new Color(128, 128, 128));
+        btnMovimentacoes.setForeground(Color.WHITE);
+        btnMovimentacoes.setFocusPainted(false);
 		tela.add(btnMovimentacoes, gbc);
         
         linha++;
@@ -107,6 +125,9 @@ public class Menu extends JFrame{
         gbc.gridx = 1;
 		gbc.gridy = linha;
 		btnUsuarios = new JButton("Usuários");
+        btnUsuarios.setBackground(new Color(128, 128, 128));
+        btnUsuarios.setForeground(Color.WHITE);
+        btnUsuarios.setFocusPainted(false);
 		tela.add(btnUsuarios, gbc);
 
         linha++;
@@ -115,6 +136,9 @@ public class Menu extends JFrame{
 		gbc.gridy = linha;
         gbc.insets = new Insets(50, 70, 5, 5); 
 		btnSair = new JButton("Sair");
+        btnSair.setBackground(new Color(81, 112, 255));
+        btnSair.setForeground(Color.white);
+        btnSair.setFocusPainted(false);
 		tela.add(btnSair, gbc);
 
         btnProdutos.addActionListener(e -> {

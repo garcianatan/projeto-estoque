@@ -94,6 +94,9 @@ public class TelaUsuario {
         int linha = 0;
 
         btnSair = new JButton("Sair");
+        btnSair.setBackground(new Color(81, 112, 255));
+        btnSair.setForeground(Color.white);
+        btnSair.setFocusPainted(false);
 		A.gridx = 5;
         A.gridy = linha;
         A.gridwidth = 1;
@@ -108,7 +111,7 @@ public class TelaUsuario {
         telaUsuario.add(lbltitulo, A);
         linha++;
         
-        JLabel lblid = new JLabel("Id: ");
+        JLabel lblid = new JLabel("ID:");
         estilizarLabel(lblid);
         A.gridx = 1;
         A.gridy = linha;
@@ -121,8 +124,7 @@ public class TelaUsuario {
         telaUsuario.add(txtid, A);
         linha++;
 
-
-        JLabel lblnome = new JLabel("Nome: ");
+        JLabel lblnome = new JLabel("Nome:");
         estilizarLabel(lblnome);
         A.gridx = 1;
         A.gridy = linha;
@@ -135,7 +137,7 @@ public class TelaUsuario {
         telaUsuario.add(txtnome, A);
         linha++;
 
-        JLabel lblcargo = new JLabel("Cargo: ");
+        JLabel lblcargo = new JLabel("Cargo:");
         estilizarLabel(lblcargo);
         A.gridx = 1;
         A.gridy = linha;
@@ -147,7 +149,7 @@ public class TelaUsuario {
         telaUsuario.add(cbcargo, A);
         linha++;
 
-        JLabel lblemail = new JLabel("Email: ");
+        JLabel lblemail = new JLabel("E-mail:");
         estilizarLabel(lblemail);
         A.gridx = 1;
         A.gridy = linha;
@@ -160,7 +162,7 @@ public class TelaUsuario {
         telaUsuario.add(txtemail, A);
         linha++;
 
-        JLabel lblsenha = new JLabel("Senha: ");
+        JLabel lblsenha = new JLabel("Senha:");
         estilizarLabel(lblsenha);
         A.gridx = 1;
         A.gridy = linha;
@@ -176,27 +178,45 @@ public class TelaUsuario {
 
         // Botão Novo
         btnnovo = new JButton("Novo");
+        btnnovo.setBackground(new Color(128, 128, 128));
+        btnnovo.setForeground(Color.WHITE);
+        btnnovo.setFocusPainted(false);
 		telaUsuario.add(btnnovo, A);
 		
 		//Botão Cancelar
 		btncancelar = new JButton("Cancelar");
+        btncancelar.setBackground(new Color(128, 128, 128));
+        btncancelar.setForeground(Color.WHITE);
+        btncancelar.setFocusPainted(false);
 		telaUsuario.add(btncancelar, A);
 		
 		//Botão Alterar
 		btnalterar = new JButton("Alterar");
+        btnalterar.setBackground(new Color(128, 128, 128));
+        btnalterar.setForeground(Color.WHITE);
+        btnalterar.setFocusPainted(false);
 		A.gridy = linha;
 		telaUsuario.add(btnalterar, A);
 		
 		//Botão Salvar
 		btnsalvar = new JButton("Salvar");
+        btnsalvar.setBackground(new Color(128, 128, 128));
+        btnsalvar.setForeground(Color.WHITE);
+        btnsalvar.setFocusPainted(false);
 		telaUsuario.add(btnsalvar, A);
 		
 		//Botão Pesquisar
 		btnpesquisar = new JButton("Pesquisar");
+        btnpesquisar.setBackground(new Color(128, 128, 128));
+        btnpesquisar.setForeground(Color.WHITE);
+        btnpesquisar.setFocusPainted(false);
 		telaUsuario.add(btnpesquisar, A);
 		
 		//Botão Excluir
 		btnexcluir = new JButton("Excluir");
+        btnexcluir.setBackground(new Color(128, 128, 128));
+        btnexcluir.setForeground(Color.WHITE);
+        btnexcluir.setFocusPainted(false);
 		telaUsuario.add(btnexcluir, A);
 
         JPanel AlinharBotoes = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 0));

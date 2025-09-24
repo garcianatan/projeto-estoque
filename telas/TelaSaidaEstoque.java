@@ -104,6 +104,9 @@ public class TelaSaidaEstoque extends JFrame{
         gbc.insets = new Insets(5, 5, 10, 5); 
 		// gbc.anchor = GridBagConstraints.WEST;
 		btnSair = new JButton("Sair");
+		btnSair.setBackground(new Color(81, 112, 255));
+        btnSair.setForeground(Color.white);
+        btnSair.setFocusPainted(false);
 		gbc.gridx = 3;
         gbc.gridwidth = 0;
 		tela.add(btnSair);
@@ -115,7 +118,7 @@ public class TelaSaidaEstoque extends JFrame{
 		gbc.gridy = linha;
 		gbc.gridwidth = 1;
 		gbc.insets = new Insets(5, 5, 5, 5);
-		lblDataSaida = new JLabel("Data de saída");
+		lblDataSaida = new JLabel("Data de Saída:");
 		estilizarLabel(lblDataSaida);
 		tela.add(lblDataSaida, gbc);
 
@@ -131,7 +134,7 @@ public class TelaSaidaEstoque extends JFrame{
 		gbc.gridy = linha;
 		gbc.gridwidth = 2;
 		gbc.insets = new Insets(5, 5, 5, 5);
-		lblNomeProduto = new JLabel("Código do produto");
+		lblNomeProduto = new JLabel("Código do Produto:");
 		estilizarLabel(lblNomeProduto);
 		tela.add(lblNomeProduto, gbc);
 
@@ -147,7 +150,7 @@ public class TelaSaidaEstoque extends JFrame{
 		gbc.gridy = linha;
 		gbc.gridwidth = 2;
 		gbc.insets = new Insets(5, 5, 5, 5);
-		lblQuantidade = new JLabel("Quantidade");
+		lblQuantidade = new JLabel("Quantidade:");
 		estilizarLabel(lblQuantidade);
 		tela.add(lblQuantidade, gbc);
 
@@ -163,7 +166,7 @@ public class TelaSaidaEstoque extends JFrame{
 		gbc.gridy = linha;
 		gbc.gridwidth = 2;
 		gbc.insets = new Insets(5, 5, 5, 5);
-		lblTipoSaida = new JLabel("Tipo de saída");
+		lblTipoSaida = new JLabel("Tipo de Saída:");
 		estilizarLabel(lblTipoSaida);
 		tela.add(lblTipoSaida, gbc);
 
@@ -180,14 +183,26 @@ public class TelaSaidaEstoque extends JFrame{
 		gbc.gridy = linha;
 		gbc.insets = new Insets(40, 5, 5, 5); 
 		btnNovo = new JButton("Novo");
+		btnNovo.setBackground(new Color(128, 128, 128));
+        btnNovo.setForeground(Color.WHITE);
+        btnNovo.setFocusPainted(false);
+
 		tela.add(btnNovo, gbc);
 
 		gbc.gridx = 3;
 		btnConfirmar = new JButton("Confirmar");
+		btnConfirmar.setBackground(new Color(128, 128, 128));
+        btnConfirmar.setForeground(Color.WHITE);
+        btnConfirmar.setFocusPainted(false);
+
 		tela.add(btnConfirmar, gbc);
 
 		gbc.gridx = 5;
 		btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBackground(new Color(128, 128, 128));
+        btnCancelar.setForeground(Color.WHITE);
+        btnCancelar.setFocusPainted(false);
+
 		tela.add(btnCancelar, gbc);
 
         abrirTela();

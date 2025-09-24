@@ -46,12 +46,12 @@ public class EstoqueAtual {
 
         // Campo de pesquisa com placeholder
         Campo_Pesquisa = new JTextField(74);
-        Campo_Pesquisa.setText("Pesquisar por código do produto");
+        Campo_Pesquisa.setText("Pesquisar por código do produto...");
         Campo_Pesquisa.setForeground(Color.GRAY);
         Campo_Pesquisa.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (Campo_Pesquisa.getText().equals("Pesquisar por código do produto")) {
+                if (Campo_Pesquisa.getText().equals("Pesquisar por código do produto...")) {
                     Campo_Pesquisa.setText("");
                     Campo_Pesquisa.setForeground(Color.BLACK);
                 }
@@ -59,7 +59,7 @@ public class EstoqueAtual {
             @Override
             public void focusLost(FocusEvent e) {
                 if (Campo_Pesquisa.getText().isEmpty()) {
-                    Campo_Pesquisa.setText("Pesquisar por código do produto");
+                    Campo_Pesquisa.setText("Pesquisar por código do produto...");
                     Campo_Pesquisa.setForeground(Color.GRAY);
                 }
             }

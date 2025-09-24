@@ -123,7 +123,7 @@ public class TelaEntradaEstoque {
     organizar.gridwidth = 1;
     organizar.gridx = 0;
     organizar.gridy = linha;
-    JLabel lblfornecedor = new JLabel("Doc do Fornecedor:");
+    JLabel lblfornecedor = new JLabel("Documento do Fornecedor:");
     lblfornecedor.setForeground(Color.white);
     tela.add(lblfornecedor, organizar);
     txtFornecedor= new JTextField(20);
@@ -136,7 +136,7 @@ public class TelaEntradaEstoque {
     organizar.gridwidth = 1;
     organizar.gridx = 0;
     organizar.gridy = linha;
-    JLabel lblproduto = new JLabel("Código do produto:");
+    JLabel lblproduto = new JLabel("Código do Produto:");
     lblproduto.setForeground(Color.white);
     tela.add(lblproduto, organizar);
     txtProduto= new JTextField(20);
@@ -163,9 +163,7 @@ public class TelaEntradaEstoque {
     JLabel lbltipo = new JLabel("Tipo de Entrada:");
     lbltipo.setForeground(Color.white);
     tela.add(lbltipo, organizar);
-    String[] tipos = {
-            "--Selecione o Tipo--", "Aquisição","Devolução","Armazenamento"
-    };
+    String[] tipos = {"-- Selecione o Tipo --", "Aquisição","Devolução","Armazenamento"};
     cbtipos = new JComboBox<>(tipos);
     organizar.gridx = 1;
     tela.add(cbtipos, organizar);
@@ -182,9 +180,20 @@ public class TelaEntradaEstoque {
         AlinharBotoes = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 0));
         AlinharBotoes.setBackground(new Color(5, 5, 50));
         btnNovo = new JButton("Novo");
+        btnNovo.setBackground(new Color(128, 128, 128));
+        btnNovo.setForeground(Color.WHITE);
+        btnNovo.setFocusPainted(false);
+        
         btnConfirmar = new JButton("Confirmar");
+        btnConfirmar.setBackground(new Color(128, 128, 128));
+        btnConfirmar.setForeground(Color.WHITE);
+        btnConfirmar.setFocusPainted(false);
+        
         btnCancelar = new JButton("Cancelar");
- 
+        btnCancelar.setBackground(new Color(128, 128, 128));
+        btnCancelar.setForeground(Color.WHITE);
+        btnCancelar.setFocusPainted(false);
+        
         AlinharBotoes.add(btnNovo);
         AlinharBotoes.add(btnConfirmar);
         AlinharBotoes.add(btnCancelar);

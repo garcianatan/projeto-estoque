@@ -3,8 +3,6 @@ import javax.swing.*;
 
 import banco.FornecedorDAO;
 import classes.Fornecedor;
-import classes.Produto;
-import classes.Usuario;
  
 public class CadastroFornecedor {
 	private JTextField Campo_Nome, Campo_CPFCNPJ, Campo_Telefone, Campo_Email, Campo_Endereco;
@@ -103,7 +101,7 @@ public class CadastroFornecedor {
 		Label_Titulo.setFont(new Font("Calibri", Font.BOLD, 30));
 		linha++;
 
-		JLabel Label_CPFCNPJ = new JLabel("CPF/CNPJ");
+		JLabel Label_CPFCNPJ = new JLabel("CPF/CNPJ:");
 		Label_CPFCNPJ.setForeground(Color.white);
 		GBC.anchor = GridBagConstraints.WEST;
 		GBC.gridx = 0;
@@ -119,7 +117,7 @@ public class CadastroFornecedor {
 		Tela.add(Campo_CPFCNPJ, GBC);
 		linha++;
 
-		JLabel Label_Nome = new JLabel("Nome");
+		JLabel Label_Nome = new JLabel("Nome:");
 		Label_Nome.setForeground(Color.white);
 		GBC.anchor = GridBagConstraints.WEST; // ALINHADO À DIREITA
 		GBC.gridx = 0;
@@ -135,7 +133,7 @@ public class CadastroFornecedor {
 		Tela.add(Campo_Nome, GBC);
 		linha++;
 
-		JLabel Label_Telefone = new JLabel("Telefone");
+		JLabel Label_Telefone = new JLabel("Telefone:");
 		Label_Telefone.setForeground(Color.white);
 		GBC.anchor = GridBagConstraints.WEST; // ALINHADO À DIREITA
 		GBC.gridx = 0;
@@ -151,7 +149,7 @@ public class CadastroFornecedor {
 		Tela.add(Campo_Telefone, GBC);
 		linha++;
 
-		JLabel Label_Email = new JLabel("E-mail");
+		JLabel Label_Email = new JLabel("E-mail:");
 		Label_Email.setForeground(Color.white);
 		GBC.anchor = GridBagConstraints.WEST; // ALINHADO À DIREITA
 		GBC.gridx = 0;
@@ -167,7 +165,7 @@ public class CadastroFornecedor {
 		Tela.add(Campo_Email, GBC);
 		linha++;
 
-		JLabel Label_Endereco = new JLabel("Endereço");
+		JLabel Label_Endereco = new JLabel("Endereço:");
 		Label_Endereco.setForeground(Color.white);
 		GBC.anchor = GridBagConstraints.WEST; // ALINHADO À DIREITA
 		GBC.gridx = 0;
