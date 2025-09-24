@@ -1,8 +1,13 @@
 package banco;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+
+
 import classes.EntradaEstoque;
 // import classes.Usuario;
 import classes.Sessao;
@@ -17,23 +22,30 @@ public class EntradaEstoqueDAO {
             conexao.setAutoCommit(false); // inicia transação
 
             // 1) Registrar a entrada no histórico
-            String sqlEntrada = "INSERT INTO entrada_estoque (documento, data_entrada, fornecedor, cod_produto, quantidade, tipo_entrada, usuario_id) "
-                              + "VALUES (?, ?, ?, ?, ?, ?, ?)";
-            try (PreparedStatement stmt = conexao.prepareStatement(sqlEntrada)) {
-                stmt.setString(1, entrada.getDocumento());
-                stmt.setString(2, entrada.getDataEntrada());
-                stmt.setString(3, entrada.getFornecedor());
-                stmt.setInt(4, entrada.getCod_produto());
-                stmt.setInt(5, entrada.getQuantidade());
-                stmt.setString(6, entrada.getTipoEntrada());
+            String sqlEntrada = "INSERT INTO entrada_estoque (data_entrada, fornecedor, cod_produto, quantidade, tipo_entrada, usuario_id) "
+                              + "VALUES (?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement stmt = conexao.prepareStatement(sqlEntrada, Statement.RETURN_GENERATED_KEYS)) {
+                
+                stmt.setDate(1, Date.valueOf(entrada.getDataEntrada()));
+                stmt.setString(2, entrada.getFornecedor());
+                stmt.setInt(3, entrada.getCod_produto());
+                stmt.setInt(4, entrada.getQuantidade());
+                stmt.setString(5, entrada.getTipoEntrada());
 
                 Usuario usuarioAtual = Sessao.getUsuarioLogado();
                 if(usuarioAtual == null){
                     throw new RuntimeException("Nenhum usuário logado.");
                 }
-                stmt.setInt(7, usuarioAtual.getId());
+                stmt.setInt(6, usuarioAtual.getId());
 
                 stmt.executeUpdate();
+
+                ResultSet rs = stmt.getGeneratedKeys();
+                if (rs.next()) {
+                    int docGerado = rs.getInt(1);
+                    entrada.setDocumento(docGerado); // guarda o número gerado
+                }
+
             }
 
             // 2) Atualizar a quantidade do produto

@@ -109,20 +109,6 @@ public class TelaSaidaEstoque extends JFrame{
 		tela.add(btnSair);
 
 
-		// linha++;
-		// gbc.gridy = linha;
-		// gbc.gridx = 1;
-		// gbc.gridwidth = 1;
-        // lblCodigo = new JLabel("Nº de documento:");
-		// estilizarLabel(lblCodigo);
-        // tela.add(lblCodigo, gbc);
-
-		// gbc.gridx = 2;
-		// gbc.gridwidth = 3;
-		// txtNumDoc = new JTextField(10);
-		// gbc.insets = new Insets(5, 50, 5, 5);
-		// tela.add(txtNumDoc, gbc);
-
 		linha++;
 
         gbc.gridx = 1;
@@ -237,7 +223,7 @@ public class TelaSaidaEstoque extends JFrame{
 			} else{
                 try {
                     SaidaEstoque saida = new SaidaEstoque();
-                    // saida.setDocumento(Integer.parseInt(txtNumDoc.getText()));
+                    
                     saida.setDataSaida(txtDataSaida.getText());
                     saida.setCod_produto(Integer.parseInt(txtCodProduto.getText()));
                     saida.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
@@ -256,14 +242,6 @@ public class TelaSaidaEstoque extends JFrame{
 				} catch (Exception ex) {
 					String msg = ex.getMessage();
 					JOptionPane.showMessageDialog(tela, "Erro ao confirmar a saída: " + msg);
-					
-					// if (msg != null && msg.contains("fkENTRADA_DOC_FORNECEDOR")) {
-					// 	JOptionPane.showMessageDialog(tela, "Fornecedor inexistente no banco da dados!");
-					// } else if(msg != null && msg.contains("fkENTRADA_COD_PRODUTO")) {
-                    //     JOptionPane.showMessageDialog(tela, "Produto inexistente no banco da dados!");
-                    // } else {
-					// 	JOptionPane.showMessageDialog(tela, "Erro ao confirmar a saída: " + msg);
-					// }
 
 				}
             }

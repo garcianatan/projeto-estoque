@@ -1,8 +1,10 @@
 package classes;
 
+import java.time.LocalDate;
+
 public class EntradaEstoque {
-    private String documento;
-    private String dataEntrada;
+    private int documento;
+    private LocalDate dataEntrada;
     private String fornecedor;
     private int cod_produto;
     private int quantidade;
@@ -16,7 +18,7 @@ public class EntradaEstoque {
 
     
 
-    public EntradaEstoque(String documento, String dataEntrada, String fornecedor, int cod_produto, int quantidade,
+    public EntradaEstoque(int documento, LocalDate dataEntrada, String fornecedor, int cod_produto, int quantidade,
             String tipoEntrada, int usuario_id) {
         this.documento = documento;
         this.dataEntrada = dataEntrada;
@@ -27,19 +29,19 @@ public class EntradaEstoque {
         this.usuario_id = usuario_id;
     }
 
-    public String getDocumento() {
+    public int getDocumento() {
         return documento;
     }
 
-    public void setDocumento(String documento) {
+    public void setDocumento(int documento) {
         this.documento = documento;
     }
 
-    public String getDataEntrada() {
+    public LocalDate getDataEntrada() {
         return dataEntrada;
     }
 
-    public void setDataEntrada(String dataEntrada) {
+    public void setDataEntrada(LocalDate dataEntrada) {
         this.dataEntrada = dataEntrada;
     }
 

@@ -6,6 +6,8 @@ import classes.EntradaEstoque;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
  
 public class TelaEntradaEstoque {
     // Declaração dos componentes como variáveis de instância para acesso nos
@@ -29,7 +31,7 @@ public class TelaEntradaEstoque {
 	}
 
     public void limpar() {
-        txtN_Doc.setText("");
+        
         txtDate.setText("");
         txtFornecedor.setText("");
         txtProduto.setText("");
@@ -38,7 +40,7 @@ public class TelaEntradaEstoque {
     }
 
     public void abrirTela() {
-        txtN_Doc.setEnabled(false);
+    
         txtDate.setEnabled(false);
         txtFornecedor.setEnabled(false);
         txtProduto.setEnabled(false);
@@ -51,8 +53,7 @@ public class TelaEntradaEstoque {
     }
 
     public void habilitar() {
-        txtN_Doc.setEnabled(true);
-        txtDate.setEnabled(true);
+        
         txtFornecedor.setEnabled(true);
         txtProduto.setEnabled(true);
         textquant.setEnabled(true);
@@ -95,7 +96,7 @@ public class TelaEntradaEstoque {
         organizar.gridy = linha;
         organizar.gridwidth = 2;
         organizar.anchor = GridBagConstraints.CENTER;
-        organizar.insets = new Insets(5, 50, 20, 5);
+        organizar.insets = new Insets(5, 150, 20, 5);
        
         JLabel lbltitulo = new JLabel("Entrada de Estoque");
         lbltitulo.setForeground(Color.white);
@@ -103,24 +104,10 @@ public class TelaEntradaEstoque {
         tela.add(lbltitulo, organizar);
  
        
- 
-        linha++;
-       
-        // N de documento
-        organizar.anchor = GridBagConstraints.WEST;
-        organizar.gridwidth = 1;
-        organizar.gridx = 0;
-        organizar.gridy = linha;
-        organizar.insets = new Insets(5, 5, 20, 5);
-        JLabel lblndoc = new JLabel("N°de Documento");
-        lblndoc.setForeground(Color.white);
-        tela.add(lblndoc, organizar);
-        txtN_Doc = new JTextField(20);
-        organizar.gridx = 1;
-        tela.add( txtN_Doc , organizar);
        
         linha++;
     // Data de Entrada
+    organizar.insets = new Insets(5, 50, 20, 5);
     organizar.gridwidth = 1;
     organizar.gridx = 0;
     organizar.gridy = linha;
@@ -212,6 +199,11 @@ public class TelaEntradaEstoque {
         btnNovo.addActionListener(e -> {
             habilitar();
 
+            LocalDate hoje = LocalDate.now();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy"); // ou ""
+			txtDate.setText(hoje.format(formatter));
+
+
             btnNovo.setEnabled(false);
             btnConfirmar.setEnabled(true);
             btnCancelar.setEnabled(true);
@@ -222,13 +214,8 @@ public class TelaEntradaEstoque {
         });
 
         btnConfirmar.addActionListener(e -> {
-            if(txtN_Doc.getText().equals("")){
-                JOptionPane.showMessageDialog(tela, "Campo N° de documento é Obrigatório!");
-            }
-            else if (txtDate.getText().equals("")) {
-                JOptionPane.showMessageDialog(tela, "Campo Data de Entrada é Obrigatório!");
-            }
-            else if(txtFornecedor.getText().equals("")) {
+            
+            if(txtFornecedor.getText().equals("")) {
                 JOptionPane.showMessageDialog(tela, "Campo Fornecedor é obrigatório!");
             }
             else if(txtProduto.getText().equals("")){
@@ -241,8 +228,8 @@ public class TelaEntradaEstoque {
 			else{
                 try {
                     EntradaEstoque entrada = new EntradaEstoque();
-                    entrada.setDocumento(txtN_Doc.getText());
-                    entrada.setDataEntrada(txtDate.getText());
+                    
+                    entrada.setDataEntrada(java.time.LocalDate.now());
                     entrada.setFornecedor(txtFornecedor.getText());
                     entrada.setCod_produto(Integer.parseInt(txtProduto.getText()));
 					entrada.setQuantidade(Integer.parseInt(textquant.getText()));
@@ -276,171 +263,4 @@ public class TelaEntradaEstoque {
  
     }
 }
- 
-   // private JPasswordField jpfSenha;
-   /*  private JButton btnNovo;
-    private JButton btnSalvar;
-    private JButton btnCancelar;
-    private JButton btnPesquisar;
-    private JButton btnAlterar;
-    private JButton btnExcluir;
-*/
- 
- 
- 
- 
-/*
-        // Configurar estado inicial
-        setEstadoInicial();
- 
-        // Adicionar ActionListeners
-        btnNovo.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                habilitarCampos(true);
-                btnSalvar.setEnabled(true);
-                btnCancelar.setEnabled(true);
-                btnNovo.setEnabled(false);
-                btnPesquisar.setEnabled(false);
-                btnAlterar.setEnabled(false);
-                btnExcluir.setEnabled(false);
-                txtId.setEnabled(false);
-            }
-        });
- 
-        btnCancelar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                limparCampos();
-                setEstadoInicial();
-            }
-        });
- 
-    btnSalvar.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if(txtNome.getText().equals("")){
-                JOptionPane.showMessageDialog(frame, "Campo Nome Obrigatório!");
-            }
-            else if(txtLogin.getText().equals("")){
-                JOptionPane.showMessageDialog(frame, "Campo Login Obrigatório!");
-            }
-            else if(jpfSenha.getPassword().length == 0){
-                JOptionPane.showMessageDialog(frame, "Campo Senha Obrigatório!");
-            }else{
-                try {
-                    Usuario usuario = new Usuario();
-                    usuario.setNome(txtNome.getText());
-                    usuario.setLogin(txtLogin.getText());
-                    usuario.setSenha(new String(jpfSenha.getPassword()));
-                   
-                    usuarioDAO.salvar(usuario);
-                    JOptionPane.showMessageDialog(frame, "Salvo com sucesso!");
-                    limparCampos();
-                    setEstadoInicial();
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(frame, "Erro ao salvar: " + ex.getMessage());
-                }
-            }
-        }
-    });
- 
-    btnPesquisar.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if(txtLogin.getText().equals("")){
-                JOptionPane.showMessageDialog(frame, "Preencher o campo Login!");                                      
-            }else{
-                try {
-                    Usuario usuario = usuarioDAO.buscarPorLogin(txtLogin.getText());
-                    if(usuario != null){
-                        txtId.setText(String.valueOf(usuario.getId()));
-                        txtNome.setText(usuario.getNome());
-                        txtLogin.setText(usuario.getLogin());
-                        jpfSenha.setText(usuario.getSenha());
-                        txtLogin.setEnabled(false);
-                        btnCancelar.setEnabled(true);
-                        btnNovo.setEnabled(false);
-                        btnAlterar.setEnabled(true);
-                        btnExcluir.setEnabled(true);
-                    }else{
-                        JOptionPane.showMessageDialog(frame, "Usuário não encontrado!");  
-                    }
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(frame, "Erro ao pesquisar: " + ex.getMessage());
-                }
-            }                
-        }
-    });
- 
-    btnAlterar.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            try {
-                Usuario usuario = new Usuario();
-                usuario.setId(Integer.parseInt(txtId.getText()));
-                usuario.setNome(txtNome.getText());
-                usuario.setLogin(txtLogin.getText());
-                usuario.setSenha(new String(jpfSenha.getPassword()));
-               
-                usuarioDAO.atualizar(usuario);
-                JOptionPane.showMessageDialog(frame, "Atualizado com sucesso!");
-                setEstadoInicial();
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(frame, "Erro ao atualizar: " + ex.getMessage());
-            }
-        }
-    });
- 
-    btnExcluir.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            try {
-                int id = Integer.parseInt(txtId.getText());
-                usuarioDAO.excluir(id);
-                JOptionPane.showMessageDialog(frame, "Usuário excluído com sucesso!");
-                limparCampos();
-                setEstadoInicial();            
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(frame, "Erro ao excluir: " + ex.getMessage());
-            }
-        }
-    });
-        frame.setVisible(true);
-    }
- 
-    private void setEstadoInicial() {
-        // Campos: apenas login habilitado
-        txtId.setEnabled(false);
-        txtNome.setEnabled(false);
-        txtLogin.setEnabled(true);
-        jpfSenha.setEnabled(false);
- 
-        // Botões: novo e pesquisar habilitados; outros desabilitados
-        btnNovo.setEnabled(true);
-        btnSalvar.setEnabled(false);
-        btnCancelar.setEnabled(false);
-        btnPesquisar.setEnabled(true);
-        btnAlterar.setEnabled(false);
-        btnExcluir.setEnabled(false);
- 
-        limparCampos();
-    }
- 
-    private void limparCampos() {
-        txtId.setText("");
-        txtNome.setText("");
-        txtLogin.setText("");
-        jpfSenha.setText("");
-    }
- 
-    private void habilitarCampos(boolean habilitar) {
-        txtId.setEnabled(habilitar);
-        txtNome.setEnabled(habilitar);
-        txtLogin.setEnabled(habilitar);
-        jpfSenha.setEnabled(habilitar);
-    }
- 
-}
-*/
  
