@@ -232,7 +232,24 @@ public class TelaEntradaEstoque {
                     entrada.setDataEntrada(java.time.LocalDate.now());
                     entrada.setFornecedor(txtFornecedor.getText());
                     entrada.setCod_produto(Integer.parseInt(txtProduto.getText()));
-					entrada.setQuantidade(Integer.parseInt(textquant.getText()));
+
+
+					// entrada.setQuantidade(Integer.parseInt(textquant.getText()));
+
+                    int quantidade;
+                    try {
+                        quantidade = Integer.parseInt(textquant.getText());
+                        if (quantidade <= 0) {
+                            JOptionPane.showMessageDialog(tela, "A quantidade deve ser maior que zero!");
+                            return; // impede continuar
+                        }
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(tela, "Informe um número válido na quantidade!");
+                        return; // impede continuar
+                    }
+                    entrada.setQuantidade(quantidade);
+
+
 					if(cbtipos.getSelectedIndex() == 1){
                         entrada.setTipoEntrada("Aquisição");
                     }else if(cbtipos.getSelectedIndex() == 2){

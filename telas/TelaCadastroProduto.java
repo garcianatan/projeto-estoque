@@ -121,7 +121,7 @@ public class TelaCadastroProduto{
 		gbc.gridy = linha;
 		gbc.gridx = 1;
 		gbc.gridwidth = 3;
-        lblCodigo = new JLabel("Código");
+        lblCodigo = new JLabel("Código:");
 		estilizarLabel(lblCodigo);
         tela.add(lblCodigo, gbc);
 
@@ -138,7 +138,7 @@ public class TelaCadastroProduto{
 		gbc.gridy = linha;
 		gbc.gridwidth = 3;
 		gbc.insets = new Insets(5, 5, 5, 5);
-		lblNome = new JLabel("Nome");
+		lblNome = new JLabel("Nome:");
 		estilizarLabel(lblNome);
 		tela.add(lblNome, gbc);
 
@@ -154,7 +154,7 @@ public class TelaCadastroProduto{
 		gbc.gridy = linha;
 		gbc.gridwidth = 3;
 		gbc.insets = new Insets(5, 5, 5, 5);
-		lblDescricao = new JLabel("Descrição");
+		lblDescricao = new JLabel("Descrição:");
 		estilizarLabel(lblDescricao);
 		tela.add(lblDescricao, gbc);
 
@@ -183,7 +183,7 @@ public class TelaCadastroProduto{
 		gbc.gridy = linha;
 		gbc.gridwidth = 3;
 		gbc.insets = new Insets(5, 5, 5, 5);
-		lblCategoria = new JLabel("Categoria");
+		lblCategoria = new JLabel("Categoria:");
 		estilizarLabel(lblCategoria);
 		tela.add(lblCategoria, gbc);
 
@@ -199,7 +199,7 @@ public class TelaCadastroProduto{
 		gbc.gridy = linha;
 		gbc.gridwidth = 3;
 		gbc.insets = new Insets(5, 5, 5, 5);
-		lblFornecedor = new JLabel("Fornecedor");
+		lblFornecedor = new JLabel("Fornecedor:");
 		estilizarLabel(lblFornecedor);
 		tela.add(lblFornecedor, gbc);
 
@@ -215,7 +215,7 @@ public class TelaCadastroProduto{
 		gbc.gridy = linha;
 		gbc.gridwidth = 3;
 		gbc.insets = new Insets(5, 5, 5, 5);
-		lblPrecoCusto = new JLabel("Preço de custo");
+		lblPrecoCusto = new JLabel("Preço de Custo:");
 		estilizarLabel(lblPrecoCusto);
 		tela.add(lblPrecoCusto, gbc);
 
@@ -231,7 +231,7 @@ public class TelaCadastroProduto{
 		gbc.gridy = linha;
 		gbc.gridwidth = 3;
 		gbc.insets = new Insets(5, 5, 5, 5);
-		lblPrecoVenda = new JLabel("Preço de venda");
+		lblPrecoVenda = new JLabel("Preço de Venda:");
 		estilizarLabel(lblPrecoVenda);
 		tela.add(lblPrecoVenda, gbc);
 

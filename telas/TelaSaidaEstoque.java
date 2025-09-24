@@ -226,7 +226,24 @@ public class TelaSaidaEstoque extends JFrame{
                     
                     saida.setDataSaida(txtDataSaida.getText());
                     saida.setCod_produto(Integer.parseInt(txtCodProduto.getText()));
-                    saida.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
+
+
+                    // saida.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
+
+					int quantidade;
+					try {
+						quantidade = Integer.parseInt(txtQuantidade.getText());
+						if (quantidade <= 0) {
+							JOptionPane.showMessageDialog(tela, "A quantidade deve ser maior que zero!");
+							return; // não permite continuar
+						}
+					} catch (NumberFormatException ex) {
+						JOptionPane.showMessageDialog(tela, "Informe um número válido na quantidade!");
+						return; // não permite continuar
+					}
+					saida.setQuantidade(quantidade);
+
+
 					if(cbTipoSaida.getSelectedIndex() == 1){
                         saida.setTipoSaida("Venda");
                     }else if(cbTipoSaida.getSelectedIndex() == 2){
