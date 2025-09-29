@@ -103,7 +103,7 @@ public class TelaUsuario {
 		telaUsuario.add(btnSair, A);
         linha++;
 
-        JLabel lbltitulo = new JLabel("Gerenciador de Usuários");
+        JLabel lbltitulo = new JLabel("Cadastro de Usuários");
         lbltitulo.setFont(new Font("Arial", Font.BOLD, 30));
         lbltitulo.setForeground(Color.WHITE);
         A.gridx = 2;

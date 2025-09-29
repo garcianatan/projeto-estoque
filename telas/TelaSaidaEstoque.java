@@ -91,6 +91,17 @@ public class TelaSaidaEstoque extends JFrame{
 		gbc.fill = GridBagConstraints.NONE;
 
         int linha = 0;
+
+		gbc.insets = new Insets(5, 5, 10, 5);
+		btnSair = new JButton("Sair");
+		btnSair.setBackground(new Color(81, 112, 255));
+        btnSair.setForeground(Color.white);
+        btnSair.setFocusPainted(false);
+		gbc.gridx = 5;
+        gbc.gridwidth = 0;
+		tela.add(btnSair, gbc);
+		linha++;
+
 		gbc.gridx = 2;
 		gbc.gridy = linha;
 		gbc.gridwidth = 6;
@@ -101,15 +112,9 @@ public class TelaSaidaEstoque extends JFrame{
 		lblTitulo.setForeground(Color.WHITE);
 		tela.add(lblTitulo, gbc);
 
-        gbc.insets = new Insets(5, 5, 10, 5); 
+        
 		// gbc.anchor = GridBagConstraints.WEST;
-		btnSair = new JButton("Sair");
-		btnSair.setBackground(new Color(81, 112, 255));
-        btnSair.setForeground(Color.white);
-        btnSair.setFocusPainted(false);
-		gbc.gridx = 3;
-        gbc.gridwidth = 0;
-		tela.add(btnSair);
+		
 
 
 		linha++;
